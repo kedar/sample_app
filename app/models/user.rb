@@ -8,4 +8,12 @@ class User < ActiveRecord::Base
                     format:     { with: valid_email_regex },
                     uniqueness: { case_sensitive: false }
   validates :password, length: { minimum: 6}
+  before_save :create_remember_token
+  private
+
+    def create_remember_token
+      self.remember_token = SecureRandom.urlsafe_base64
+    end
+
+
 end
