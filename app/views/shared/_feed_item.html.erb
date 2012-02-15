@@ -13,7 +13,8 @@
   </td>
   <% if current_user?(feed_item.user) %>
     <td>
-      <%= link_to "delete", micropost, method: :delete,
+      
+      <%= link_to "delete", "microposts/#{feed_item.id}", method: :delete,
                                        confirm: "You sure?",
                                        title: feed_item.content %>
     </td>

@@ -12,7 +12,7 @@ module SessionsHelper
 
   def sign_in(user)
     cookies.permanent[:remember_token] = user.remember_token
-    session[:current_user] = user
+    session[:current_user] = user.id
   end
   
   def sign_out
@@ -29,11 +29,12 @@ module SessionsHelper
   end
 
   def current_user=(user)
-    session[:current_user] = user
+    session[:current_user] = user.id
   end
 
   def current_user
      session[:current_user]     # Useless! Don't use this line.
+     User.find(session[:current_user])
   end
 
   def signed_in_user
