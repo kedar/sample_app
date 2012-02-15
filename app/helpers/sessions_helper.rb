@@ -36,6 +36,14 @@ module SessionsHelper
      session[:current_user]     # Useless! Don't use this line.
   end
 
+  def signed_in_user
+    unless signed_in?
+      store_location
+      redirect_to signin_path, notice: "Please sign in."
+    end
+  end
+
+
   private
 
     def user_from_remember_token

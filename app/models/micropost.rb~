@@ -1,0 +1,6 @@
+class Micropost < ActiveRecord::Base
+  attr_accessible :name, :email, :password, :password_confirmation
+  has_secure_password
+  has_many :microposts	
+  default_scope order: 'microposts.created_at DESC'
+end
